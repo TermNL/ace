@@ -121,7 +121,7 @@ var modes = [
     new Mode("scss", "SCSS", require("ace/mode/scss").Mode, ["scss"]),
     new Mode("ruby", "Ruby", require("ace/mode/ruby").Mode, ["rb"]),
     new Mode("sql", "SQL", require("ace/mode/sql").Mode, ["sql"]),
-    new Mode("svg", "SVG", require("ace/mode/SVG").Mode, ["svg"]),
+    //new Mode("svg", "SVG", require("ace/mode/SVG").Mode, ["svg"]),
     new Mode("text", "Text", require("ace/mode/text").Mode, ["txt"]),
     new Mode("textile", "Textile", require("ace/mode/textile").Mode, ["textile"]),
     new Mode("xml", "XML", require("ace/mode/xml").Mode, ["xml"])
@@ -166,10 +166,6 @@ var docs = [
     new Doc(
         "xml", "XML",
         require("ace/requirejs/text!./docs/xml.xml")
-    ),
-    new Doc(
-        "svg", "SVG",
-        require("ace/requirejs/text!./docs/svg.svg")
     ),
     new Doc(
         "php", "PHP",
