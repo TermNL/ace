@@ -97,6 +97,7 @@ function loadTheme(name, callback) {
 }
 
 var modes = [
+/*             
     new Mode("c_cpp", "C/C++", require("ace/mode/c_cpp").Mode, ["c", "cpp", "cxx", "h", "hpp"]),
     new Mode("clojure", "Clojure", require("ace/mode/clojure").Mode, ["clj"]),
     new Mode("coffee", "CoffeeScript", require("ace/mode/coffee").Mode, ["coffee"]),
@@ -125,6 +126,8 @@ var modes = [
     new Mode("text", "Text", require("ace/mode/text").Mode, ["txt"]),
     new Mode("textile", "Textile", require("ace/mode/textile").Mode, ["textile"]),
     new Mode("xml", "XML", require("ace/mode/xml").Mode, ["xml"])
+    */
+	new Mode("latex", "LaTeX", require("ace/mode/latex").Mode, ["tex"])
 ];
 
 modesByName = {};
@@ -138,10 +141,13 @@ for (var i = 0; i < 5; i++) {
 }
 
 var docs = [
+            /*
     new Doc(
         "javascript", "JavaScript",
         require("ace/requirejs/text!./docs/javascript.js")
-    ),
+    )
+    ,
+    
     new WrappedDoc("text", "Plain Text", loreIpsum),
     new Doc(
         "coffee", "Coffeescript",
@@ -234,7 +240,7 @@ var docs = [
     new WrappedDoc(
         "textile", "Textile",
         require("ace/requirejs/text!./docs/textile.textile")
-    ),
+    ),*/
     new WrappedDoc(
         "latex", "LaTeX",
         require("ace/requirejs/text!./docs/latex.tex")

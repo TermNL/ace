@@ -99,8 +99,17 @@ if (target == "normal") {
         source: "build_support/editor.html",
         dest:   targetDir + '/editor.html'
     });
+    copy({
+        source: "build_support/editor.js",
+        dest:   targetDir + '/editor.js'
+    });
+    copy({
+        source: "build_support/require.js",
+        dest:   targetDir + '/require.js'
+    });
     
-    demo();
+    if (false)
+    	demo();
 } else if(target == "bm") {
     copy({
         source: "build_support/editor_textarea.html",
@@ -175,6 +184,7 @@ if (target == "normal") {
     });
     
     project.assumeAllFilesLoaded();
+    
     copy({
         source: [
             copy.source.commonjs({
@@ -224,9 +234,12 @@ console.log('# ace modes ---------');
 
 project.assumeAllFilesLoaded();
 [
+ /*
     "css", "html", "javascript", "php", "coldfusion", "python", "lua", "xml", "ruby", "java", "c_cpp",
     "coffee", "perl", "csharp", "haxe", "svg", "clojure", "scss", "json", "groovy",
     "ocaml", "scala", "textile", "scad", "markdown", "latex", "powershell", "sql"
+ */
+ "latex", "javascript", "webdsl"
 ].forEach(function(mode) {
     console.log("mode " + mode);
     copy({
@@ -244,12 +257,15 @@ project.assumeAllFilesLoaded();
 console.log('# ace themes ---------');
 
 [
+ /*
     "clouds", "clouds_midnight", "cobalt", "crimson_editor", "dawn", "eclipse",
     "idle_fingers", "kr_theme", "merbivore", "merbivore_soft",
     "mono_industrial", "monokai", "pastel_on_dark", "solarized_dark",
     "solarized_light", "textmate", "tomorrow", "tomorrow_night",
     "tomorrow_night_blue", "tomorrow_night_bright", "tomorrow_night_eighties",
     "twilight", "vibrant_ink"
+    */
+ "twilight"
 ].forEach(function(theme) {
     copy({
         source: [{
@@ -283,7 +299,9 @@ if (target == "bm") {
 
 console.log('# ace worker ---------');
 
-["javascript", "coffee", "css"].forEach(function(mode) {
+["javascript", "webdsl"
+ //, "coffee", "css"
+ ].forEach(function(mode) {
     console.log("worker for " + mode + " mode");
     var worker = copy.createDataObject();
     var workerProject = copy.createCommonJsProject({
@@ -300,6 +318,7 @@ console.log('# ace worker ---------');
                     'ace/lib/fixoldbrowsers',
                     'ace/lib/event_emitter',
                     'ace/lib/oop',
+                    'ace/jssglr',
                     'ace/mode/' + mode + '_worker'
                 ]
             })

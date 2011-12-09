@@ -21,23 +21,56 @@
 </head>
 <body>
 
-<pre id="editor">function foo(items) {
-    var i;
-    for (i = 0; i &lt; items.length; i++) {
-        alert("Ace Rocks " + items[i]);
-    }
-}</pre>
+<pre id="editor">application FriendFace
+
+imports app/entities
+imports app/pages
+imports app/rules
+imports app/services
+
+
+	init {
+		//Some test data...
+		var x1 : Member := Member { username := "Richard" password := ("test" as Secret).digest() gender := maleGender firstName := "Richard" lastName := "Vogelij" aboutSelf := "Some story blabla"}; x1.save();
+		var x2 : Member := Member { username := "Richard1" password := ("test" as Secret).digest() gender := maleGender firstName := "Richard" lastName := "Vogelij" aboutSelf := "Some story blabla"}; x2.save();
+		var x3 : Member := Member { username := "Richard2" password := ("test" as Secret).digest() gender := maleGender firstName := "Richard" lastName := "Vogelij" aboutSelf := "Some story blabla"}; x3.save();
+		var x4 : Member := Member { username := "Richard3" password := ("test" as Secret).digest() gender := maleGender firstName := "Richard" lastName := "Vogelij" aboutSelf := "Some story blabla"}; x4.save();
+		
+		//var x5 : FriendRelation := FriendRelation { asker := x1 askee := x2 accepted := true }; x5.save();
+		//var x6 : FriendRelation := FriendRelation { asker := x1 askee := x3 accepted := true }; x6.save();
+		var x7 : FriendRelation := FriendRelation { asker := x1 askee := x4 accepted := true }; x7.save();
+	}
+
+	define page root()
+	{
+		homeContent()
+	}
+	
+access control rules
+	
+	rule page *(*) { true }</pre>
     
 <script src="src/ace-uncompressed.js" type="text/javascript" charset="utf-8"></script>
 <script src="src/theme-twilight.js" type="text/javascript" charset="utf-8"></script>
-<script src="src/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
+<script src="src/mode-webdsl.js" type="text/javascript" charset="utf-8"></script>
+<script src="require.js" type="text/javascript" charset="utf-8"></script>
+
 <script>
 window.onload = function() {
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/twilight");
     
-    var JavaScriptMode = require("ace/mode/javascript").Mode;
-    editor.getSession().setMode(new JavaScriptMode());
+    var WebDSLMode = require("ace/mode/webdsl").Mode;
+    editor.getSession().setMode(new WebDSLMode());
+	/*
+    //load worker AFTER require statement since webdsl worker contains a require function which is wrongfully called
+    function loadjsfile(filename){
+   	  var fileref=document.createElement('script')
+   	  fileref.setAttribute("type","text/javascript")
+   	  fileref.setAttribute("src", filename)
+    }
+    loadjsfile("worker-webdsl.js");
+    */
 };
 </script>
 
