@@ -372,6 +372,7 @@ bindDropdown("fontsize", function(value) {
 
 bindDropdown("folding", function(value) {
     env.editor.getSession().setFoldStyle(value);
+    env.editor.setShowFoldWidgets(value !== "manual");
 });
 
 bindDropdown("soft_wrap", function(value) {
